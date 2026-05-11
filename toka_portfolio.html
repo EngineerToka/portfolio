@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Toka Abdellatief – Full Stack Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0A0A0F;--sf:#111118;--sf2:#1A1A24;--bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.13);--tx:#F0EEE8;--mt:#8A8898;--gd:#C8A96E;--bl:#7B8FE8;--tl:#5DCAA5;--rd:#E2695A;--serif:'Playfair Display',Georgia,serif;--mono:'DM Mono',monospace;--sans:'Manrope',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gd);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(10,10,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--gd)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--mt);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gd)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%}
+.eyebrow{font-family:var(--mono);font-size:.75rem;color:var(--tl);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+.eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--tl)}
+h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900;line-height:1.08;letter-spacing:-.03em}
+h1 .gd{color:var(--gd)}
+.hero-sub{font-size:.98rem;color:var(--mt);margin:1.4rem 0 2.2rem;line-height:1.82;max-width:460px}
+.cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--gd);color:#0A0A0F;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 2rem;border:none;cursor:pointer;text-decoration:none;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.btn-p:hover{background:#dbbf7c;transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--tx);font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.88rem 2rem;border:1px solid var(--bd2);text-decoration:none;transition:all .2s}
+.btn-o:hover{border-color:var(--gd);color:var(--gd)}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:.13}
+.orb1{width:600px;height:600px;background:#C8A96E;top:-200px;right:-200px}
+.orb2{width:400px;height:400px;background:#7B8FE8;bottom:-100px;left:-100px}
+
+/* CODE CARD */
+.code-card{background:var(--sf);border:1px solid var(--bd2);border-radius:12px;overflow:hidden;font-family:var(--mono);font-size:.78rem;line-height:1.85}
+.code-bar{background:var(--sf2);padding:.7rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--bd)}
+.dot{width:10px;height:10px;border-radius:50%}.dr{background:#E2695A}.dy{background:#C8A96E}.dg{background:#5DCAA5}
+.cfn{color:var(--gd)}.ckw{color:var(--bl)}.cst{color:var(--tl)}.ccm{color:#44445A;font-style:italic}.cprop{color:#E2A87A}.cln{color:#2E2E46;margin-right:1rem;user-select:none}
+.code-body{padding:1.4rem 1.5rem}
+
+/* SECTIONS */
+section{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+.sec-lbl{font-family:var(--mono);font-size:.7rem;color:var(--gd);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--bd2);max-width:80px}
+h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.9rem);font-weight:700;letter-spacing:-.025em;margin-bottom:.5rem;line-height:1.15}
+.sec-intro{color:var(--mt);font-size:.93rem;max-width:600px;margin-bottom:3.5rem;line-height:1.85}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem}
+.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:1.5rem;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.sk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ca,var(--gd)),transparent);opacity:0;transition:opacity .3s}
+.sk-card:hover{border-color:var(--bd2);transform:translateY(-3px)}.sk-card:hover::before{opacity:1}
+.sk-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.9rem}
+.sk-card h3{font-size:.77rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mt);margin-bottom:.7rem}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.tag{font-family:var(--mono);font-size:.69rem;padding:.22rem .55rem;border-radius:4px;background:rgba(255,255,255,.04);color:var(--tx);border:1px solid var(--bd)}
+.tg{background:rgba(200,169,110,.1);border-color:rgba(200,169,110,.3);color:var(--gd)}
+.tb{background:rgba(123,143,232,.1);border-color:rgba(123,143,232,.28);color:var(--bl)}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:2rem}
+.tl-line{position:absolute;left:0;top:12px;bottom:0;width:1px;background:var(--bd2)}
+.tl-item{position:relative}
+.tl-dot{position:absolute;left:-2rem;top:5px;width:12px;height:12px;border-radius:50%;background:var(--gd);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(200,169,110,.22)}
+.tl-meta{font-family:var(--mono);font-size:.7rem;color:var(--tl);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.tl-item h3{font-family:var(--serif);font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.15rem}
+.tl-co{font-size:.84rem;color:var(--mt);margin-bottom:.8rem}
+.tl-intro{font-size:.87rem;color:var(--mt);line-height:1.78;margin-bottom:1.5rem;max-width:700px}
+
+/* PLATFORM CARD — wraps everything */
+.platform-card{background:var(--sf);border:1px solid var(--bd2);border-radius:14px;overflow:hidden}
+.pc-header{padding:1.8rem 2rem 1.5rem;border-bottom:1px solid var(--bd)}
+.pc-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;margin-bottom:.3rem}
+.pc-sub{font-size:.82rem;color:var(--mt);line-height:1.6}
+.pc-body{padding:1.8rem 2rem}
+
+/* ACCOUNTING SECTION inside platform card */
+.acc-section{margin-bottom:1.8rem}
+.module-label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.28rem .8rem;border-radius:3px;background:rgba(200,169,110,.1);color:var(--gd);border:1px solid rgba(200,169,110,.28);margin-bottom:1rem}
+.owns-badge{background:rgba(200,169,110,.18);color:var(--gd);border-color:rgba(200,169,110,.4);font-weight:700}
+.acc-section h4{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-bottom:.3rem}
+.acc-section .sub{font-size:.82rem;color:var(--mt);margin-bottom:1.2rem}
+.acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:.8rem}
+.acc-mod{background:rgba(255,255,255,.025);border:1px solid var(--bd);border-radius:8px;padding:.9rem 1rem;transition:border-color .2s}
+.acc-mod:hover{border-color:rgba(200,169,110,.3)}
+.ami{font-size:1.1rem;margin-bottom:.4rem}
+.acc-mod h5{font-size:.78rem;font-weight:700;color:var(--gd);margin-bottom:.25rem}
+.acc-mod p{font-size:.73rem;color:var(--mt);line-height:1.5}
+
+/* OTHER MODULES SECTION */
+.other-section{border-top:1px solid var(--bd);padding-top:1.5rem}
+.other-section h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
+.other-section .sub{font-size:.82rem;color:var(--mt);margin-bottom:1.2rem}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-bottom:1.2rem}
+.mod-item{display:flex;align-items:flex-start;gap:.5rem;font-size:.81rem;color:var(--mt);line-height:1.5}
+.ma{color:var(--bl);font-size:.68rem;margin-top:.28rem;flex-shrink:0}
+.feats{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.3rem}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.5rem}
+.proj-card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:2rem;transition:all .3s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.proj-card:hover{border-color:var(--bd2);transform:translateY(-4px)}
+.pnum{font-family:var(--mono);font-size:3rem;font-weight:300;color:rgba(255,255,255,.04);position:absolute;top:1rem;right:1.5rem;line-height:1}
+.pbadge{font-family:var(--mono);font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .65rem;border-radius:3px;display:inline-block;margin-bottom:.9rem;width:fit-content}
+.pb1{background:rgba(123,143,232,.12);color:var(--bl);border:1px solid rgba(123,143,232,.3)}
+.pb2{background:rgba(93,202,165,.1);color:var(--tl);border:1px solid rgba(93,202,165,.3)}
+.proj-card h3{font-family:var(--serif);font-size:1.22rem;font-weight:700;margin-bottom:.6rem}
+.proj-desc{font-size:.84rem;color:var(--mt);line-height:1.7;margin-bottom:1.2rem;flex:1}
+.proj-feats{list-style:none;margin-bottom:1.2rem}
+.proj-feats li{font-size:.79rem;color:var(--mt);padding:.27rem 0 .27rem 1rem;position:relative;border-bottom:1px solid var(--bd)}
+.proj-feats li::before{content:'▪';position:absolute;left:0;color:var(--gd);font-size:.55rem;top:.44rem}
+.proj-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--bd);padding-top:.9rem;margin-top:auto}
+.proj-link{font-family:var(--mono);font-size:.72rem;color:var(--gd);text-decoration:none;display:flex;align-items:center;gap:.35rem;transition:gap .2s}
+.proj-link:hover{gap:.6rem}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1.2rem}
+.stat-box{text-align:center;padding:1.7rem 1rem;background:var(--sf);border:1px solid var(--bd);border-radius:10px}
+.stat-num{font-family:var(--serif);font-size:2.4rem;font-weight:900;color:var(--gd);line-height:1;margin-bottom:.35rem}
+.stat-lbl{font-size:.72rem;color:var(--mt);line-height:1.45}
+
+/* CONTACT */
+.contact-card{background:var(--sf);border:1px solid var(--bd2);border-radius:16px;padding:4rem 3rem;max-width:700px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.contact-card::after{content:'';position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:var(--gd);border-radius:50%;filter:blur(100px);opacity:.07;pointer-events:none}
+.c-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.c-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.77rem;color:var(--mt);text-decoration:none;padding:.65rem 1.2rem;border:1px solid var(--bd2);border-radius:6px;transition:all .2s}
+.c-link:hover{color:var(--gd);border-color:rgba(200,169,110,.4)}
+footer{text-align:center;padding:2rem 4rem;border-top:1px solid var(--bd);font-family:var(--mono);font-size:.7rem;color:var(--mt);letter-spacing:.1em}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .7s ease both}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  #hero{padding:6rem 1.5rem 3rem}.hero-inner{grid-template-columns:1fr}.code-card{display:none}
+  section{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Toka.</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow fu">Full Stack Engineer · Laravel &amp; React</div>
+      <h1 class="fu d1">Toka<br><span class="gd">Abdellatief</span></h1>
+      <p class="hero-sub fu d2">
+        Contributing to an enterprise shipping &amp; freight forwarding platform — 
+        with full ownership of its accounting module: Chart of Accounts, 
+        Journal Entries, Banks, Treasury, ZATCA e-invoicing, P&amp;L, and Balance Sheet.
+      </p>
+      <div class="cta fu d3">
+        <a href="#experience" class="btn-p">See My Work ↓</a>
+        <a href="#contact" class="btn-o">Hire Me</a>
+      </div>
+    </div>
+    <div class="fu d4">
+      <div class="code-card">
+        <div class="code-bar">
+          <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+          <span style="margin-left:.5rem;color:var(--mt);font-size:.7rem;letter-spacing:.05em">AccountingModule.php</span>
+        </div>
+        <div class="code-body"><pre><span class="cln">01</span><span class="ckw">class</span> <span class="cfn">AccountingModule</span> <span class="ckw">extends</span> Controller
+<span class="cln">02</span>{
+<span class="cln">03</span>  <span class="ccm">// Part of the Shipping Platform</span>
+<span class="cln">04</span>  <span class="ccm">// Full module ownership — Toka</span>
+<span class="cln">05</span>
+<span class="cln">06</span>  <span class="ckw">public function</span> <span class="cfn">profitAndLoss</span>(Request $r)
+<span class="cln">07</span>  {
+<span class="cln">08</span>    <span class="ckw">return</span> <span class="cfn">PDF</span>::render([
+<span class="cln">09</span>      <span class="cprop">'revenues'</span> => Account::revenues($r->period),
+<span class="cln">10</span>      <span class="cprop">'expenses'</span> => Account::expenses($r->period),
+<span class="cln">11</span>      <span class="cprop">'net'</span>      => <span class="cfn">$this</span>->calcNet(),
+<span class="cln">12</span>    ]);
+<span class="cln">13</span>  }
+<span class="cln">14</span>
+<span class="cln">15</span>  <span class="ckw">public function</span> <span class="cfn">zatcaInvoice</span>(Order $order)
+<span class="cln">16</span>  {
+<span class="cln">17</span>    $qr = <span class="cfn">QRCode</span>::generate($order);
+<span class="cln">18</span>    <span class="ckw">return</span> <span class="cfn">PDF</span>::zatca($order, $qr);
+<span class="cln">19</span>  }
+<span class="cln">20</span>}</pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-lbl">Toolkit</div>
+  <h2>Technical Skills</h2>
+  <p class="sec-intro">Forged through production ownership inside a live enterprise platform — not just personal projects.</p>
+  <div class="skills-grid">
+    <div class="sk-card" style="--ca:#7B8FE8">
+      <div class="sk-icon" style="background:rgba(123,143,232,.12);color:var(--bl)">⚙</div>
+      <h3>Backend</h3>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">RESTful API</span><span class="tag">MVC</span><span class="tag">OOP</span><span class="tag">RBAC</span><span class="tag">Audit Trail</span></div>
+    </div>
+    <div class="sk-card" style="--ca:#5DCAA5">
+      <div class="sk-icon" style="background:rgba(93,202,165,.12);color:var(--tl)">◈</div>
+      <h3>Frontend</h3>
+      <div class="tags"><span class="tag">React.js</span><span class="tag">Next.js</span><span class="tag">JavaScript</span><span class="tag">jQuery</span><span class="tag">Bootstrap</span><span class="tag">AJAX</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div>
+    </div>
+    <div class="sk-card" style="--ca:#C8A96E">
+      <div class="sk-icon" style="background:rgba(200,169,110,.12);color:var(--gd)">◎</div>
+      <h3>Accounting &amp; Finance</h3>
+      <div class="tags">
+        <span class="tag tg">Chart of Accounts</span><span class="tag tg">Journal Entries</span><span class="tag tg">AP / AR</span><span class="tag tg">Banks &amp; Treasury</span><span class="tag tg">Transactions</span><span class="tag tg">ZATCA Phase 2</span><span class="tag tg">P&amp;L Statement</span><span class="tag tg">Balance Sheet</span><span class="tag tg">Account Statement</span><span class="tag tg">Trial Balance</span>
+      </div>
+    </div>
+    <div class="sk-card" style="--ca:#E2695A">
+      <div class="sk-icon" style="background:rgba(226,105,90,.12);color:var(--rd)">✦</div>
+      <h3>Tools &amp; Practices</h3>
+      <div class="tags"><span class="tag">Git</span><span class="tag">Jira</span><span class="tag">Unit Testing</span><span class="tag">PDF Generation</span><span class="tag">Excel Import/Export</span><span class="tag">QR Code</span><span class="tag">Soft Delete</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-lbl">Career</div>
+  <h2>Experience</h2>
+  <p class="sec-intro">One platform, multiple modules — with full ownership where it counts most.</p>
+
+  <div class="timeline">
+    <div class="tl-line"></div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">Feb 2025 – Present</div>
+      <h3>PHP Full Stack Developer</h3>
+      <div class="tl-co">Deja Tech &nbsp;·&nbsp; Alexandria, Egypt</div>
+      <p class="tl-intro">
+        Contributing to an enterprise <strong>Shipping &amp; Freight Forwarding Management Platform</strong> 
+        used by real shipping agencies and logistics companies. The platform covers the full shipping 
+        business lifecycle across multiple interconnected modules.
+      </p>
+
+      <!-- PLATFORM CARD -->
+      <div class="platform-card">
+
+        <div class="pc-header">
+          <div class="pc-title">Shipping &amp; Freight Forwarding Platform</div>
+          <div class="pc-sub">Enterprise multi-module system · Laravel · PHP · MySQL · Live production environment</div>
+        </div>
+
+        <div class="pc-body">
+
+          <!-- ACCOUNTING MODULE -->
+          <div class="acc-section">
+            <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem">
+              <span class="module-label owns-badge">★ Accounting Module — Full Ownership</span>
+            </div>
+            <h4 style="font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.25rem">Complete Financial Cycle</h4>
+            <p class="sub" style="font-size:.82rem;color:var(--mt);margin-bottom:1.2rem">Designed, built &amp; maintained end-to-end · Integrated with live shipping operations</p>
+            <div class="acc-grid">
+              <div class="acc-mod"><div class="ami">🌳</div><h5>Chart of Accounts</h5><p>Multi-level accounting tree: assets, liabilities, equity, income &amp; expenses</p></div>
+              <div class="acc-mod"><div class="ami">📒</div><h5>Journal Entries</h5><p>Double-entry engine with debit/credit validation, posting &amp; audit trail</p></div>
+              <div class="acc-mod"><div class="ami">📥</div><h5>Accounts Payable</h5><p>Vendor invoices, payment scheduling &amp; AP aging reports</p></div>
+              <div class="acc-mod"><div class="ami">📤</div><h5>Accounts Receivable</h5><p>Client billing, collection tracking &amp; AR aging reports</p></div>
+              <div class="acc-mod"><div class="ami">🏦</div><h5>Banks &amp; Treasury</h5><p>Multi-bank accounts, transfers, cash flow &amp; treasury position</p></div>
+              <div class="acc-mod"><div class="ami">💳</div><h5>Transactions</h5><p>Full financial transaction lifecycle linked to shipping operations</p></div>
+              <div class="acc-mod"><div class="ami">🧾</div><h5>ZATCA E-Invoicing</h5><p>Saudi Phase 2 compliant — automated QR code &amp; PDF generation</p></div>
+              <div class="acc-mod"><div class="ami">📊</div><h5>Financial Reports</h5><p>P&amp;L, Balance Sheet, Trial Balance, Account Statement — PDF &amp; Excel</p></div>
+            </div>
+          </div>
+
+          <!-- OTHER MODULES -->
+          <div class="other-section">
+            <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem">
+              <span class="module-label">Other Platform Modules — Contributor</span>
+            </div>
+            <p class="sub" style="font-size:.82rem;color:var(--mt);margin-bottom:1.2rem">Cross-module contributions across the full shipping business cycle</p>
+            <div class="modules-grid">
+              <div class="mod-item"><span class="ma">→</span>Customer management &amp; CRM</div>
+              <div class="mod-item"><span class="ma">→</span>Quotation management</div>
+              <div class="mod-item"><span class="ma">→</span>Operations &amp; job tracking</div>
+              <div class="mod-item"><span class="ma">→</span>User &amp; role management</div>
+              <div class="mod-item"><span class="ma">→</span>Document workflows</div>
+              <div class="mod-item"><span class="ma">→</span>Production bug resolution</div>
+            </div>
+            <div class="feats">
+              <span class="tag tb">PDF Generation</span>
+              <span class="tag tb">Excel Export &amp; Import</span>
+              <span class="tag tb">Full CRUD + RBAC</span>
+              <span class="tag tb">Soft Delete &amp; Restore</span>
+              <span class="tag tb">AJAX Interactions</span>
+              <span class="tag tb">Responsive UI</span>
+              <span class="tag tb">Client Communication</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-lbl">Personal Work</div>
+  <h2>Projects</h2>
+  <p class="sec-intro">Side projects demonstrating full-stack range and architecture thinking.</p>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="pnum">01</div>
+      <span class="pbadge pb1">Backend · Laravel</span>
+      <h3>ShopApp – E-Commerce API</h3>
+      <p class="proj-desc">Complete e-commerce backend in Laravel covering the full business logic from product catalog to payment processing, with unit testing throughout.</p>
+      <ul class="proj-feats">
+        <li>Products, carts, wishlist, orders, coupons &amp; payments</li>
+        <li>Clean RESTful API architecture</li>
+        <li>Unit-tested for data integrity &amp; reliability</li>
+        <li>Role-based user management</li>
+      </ul>
+      <div class="proj-foot">
+        <div class="tags"><span class="tag">Laravel</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Unit Testing</span></div>
+        <a href="https://github.com/EngineerToka/ShopApp" target="_blank" class="proj-link">GitHub →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="pnum">02</div>
+      <span class="pbadge pb2">Full Stack · React</span>
+      <h3>Fresh Cart – Shopping SPA</h3>
+      <p class="proj-desc">Full-featured e-commerce React SPA with product browsing, cart management, wishlist, secure checkout, and user authentication — fully responsive.</p>
+      <ul class="proj-feats">
+        <li>Product browsing, cart &amp; wishlist</li>
+        <li>Secure checkout &amp; order management</li>
+        <li>Register, login &amp; profile update</li>
+        <li>Responsive — mobile to desktop</li>
+      </ul>
+      <div class="proj-foot">
+        <div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span></div>
+        <a href="https://github.com/EngineerToka/E-Commerce-shopping-App" target="_blank" class="proj-link">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <div class="sec-lbl">Background</div>
+  <h2>About Me</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+    <div>
+      <p style="color:var(--mt);line-height:1.9;font-size:.92rem;margin-bottom:1rem">I studied Production &amp; Industrial Engineering at Alexandria University — which trained me to think in systems, processes, and optimization. That mindset shapes how I approach software architecture.</p>
+      <p style="color:var(--mt);line-height:1.9;font-size:.92rem;margin-bottom:1rem">After Route Academy's full-stack diploma, I joined Deja Tech where I've taken real ownership inside a live production platform — not just writing code, but designing and delivering entire modules that real businesses depend on daily.</p>
+      <p style="color:var(--mt);line-height:1.9;font-size:.92rem">Based in Alexandria, Egypt. Open to remote work globally and on-site in the Gulf — especially Saudi Arabia where my ZATCA expertise applies directly.</p>
+    </div>
+    <div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num">8+</div><div class="stat-lbl">Accounting Sub-Modules Built</div></div>
+        <div class="stat-box"><div class="stat-num">✓</div><div class="stat-lbl">ZATCA Phase 2 Compliant</div></div>
+        <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Live Enterprise Platform</div></div>
+        <div class="stat-box"><div class="stat-num">B2</div><div class="stat-lbl">English Proficiency</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-lbl" style="justify-content:center">Let's Talk</div>
+  <div class="contact-card">
+    <h2 style="margin-bottom:.7rem">Open to Opportunities</h2>
+    <p style="color:var(--mt);font-size:.92rem;line-height:1.85;max-width:480px;margin:0 auto">
+      Looking for full-stack or backend roles — remote worldwide, or on-site in the Gulf.
+      Strongest fit for logistics, fintech, ERP, or any product needing serious backend &amp; accounting engineering.
+    </p>
+    <div class="c-links">
+      <a href="mailto:toka.mahmoud91@gmail.com" class="c-link">✉ toka.mahmoud91@gmail.com</a>
+      <a href="https://linkedin.com/in/toka-mahmoud-8661591b5/" target="_blank" class="c-link">↗ LinkedIn</a>
+      <a href="https://github.com/EngineerToka" target="_blank" class="c-link">↗ GitHub</a>
+      <a href="tel:+201204252882" class="c-link">☎ +20 120 425 2882</a>
+    </div>
+  </div>
+</section>
+
+<footer>Toka Mohamoud Abdellatief &nbsp;·&nbsp; Full Stack Engineer &nbsp;·&nbsp; Alexandria, Egypt &nbsp;·&nbsp; 2025</footer>
+
+</body>
+</html>
