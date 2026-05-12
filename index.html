@@ -3,397 +3,1401 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Toka Abdellatief – Full Stack Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<title>Toka Abdellatief — Full Stack Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0A0A0F;--sf:#111118;--sf2:#1A1A24;--bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.13);--tx:#F0EEE8;--mt:#8A8898;--gd:#C8A96E;--bl:#7B8FE8;--tl:#5DCAA5;--rd:#E2695A;--serif:'Playfair Display',Georgia,serif;--mono:'DM Mono',monospace;--sans:'Manrope',sans-serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gd);border-radius:2px}
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --ink:    #0C0C10;
+  --ink2:   #141418;
+  --ink3:   #1C1C22;
+  --wire:   rgba(255,255,255,.06);
+  --wire2:  rgba(255,255,255,.11);
+  --wire3:  rgba(255,255,255,.18);
+  --dust:   #5C5C6E;
+  --ash:    #9898A8;
+  --paper:  #E8E4DC;
+  --gold:   #C9A96E;
+  --gold2:  #E8C98A;
+  --ice:    #6EB5C9;
+  --mint:   #6EC9A9;
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --syne:   'Syne', sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(10,10,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
-.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--gd)}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{color:var(--mt);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--gd)}
+/* ═══════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--syne);
+  overflow-x: hidden;
+  cursor: none;
+}
 
-/* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%}
-.eyebrow{font-family:var(--mono);font-size:.75rem;color:var(--tl);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
-.eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--tl)}
-h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900;line-height:1.08;letter-spacing:-.03em}
-h1 .gd{color:var(--gd)}
-.hero-sub{font-size:.98rem;color:var(--mt);margin:1.4rem 0 2.2rem;line-height:1.82;max-width:460px}
-.cta{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--gd);color:#0A0A0F;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 2rem;border:none;cursor:pointer;text-decoration:none;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
-.btn-p:hover{background:#dbbf7c;transform:translateY(-2px)}
-.btn-o{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--tx);font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.88rem 2rem;border:1px solid var(--bd2);text-decoration:none;transition:all .2s}
-.btn-o:hover{border-color:var(--gd);color:var(--gd)}
-.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:.13}
-.orb1{width:600px;height:600px;background:#C8A96E;top:-200px;right:-200px}
-.orb2{width:400px;height:400px;background:#7B8FE8;bottom:-100px;left:-100px}
+/* GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: .4;
+}
 
-/* CODE CARD */
-.code-card{background:var(--sf);border:1px solid var(--bd2);border-radius:12px;overflow:hidden;font-family:var(--mono);font-size:.78rem;line-height:1.85}
-.code-bar{background:var(--sf2);padding:.7rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--bd)}
-.dot{width:10px;height:10px;border-radius:50%}.dr{background:#E2695A}.dy{background:#C8A96E}.dg{background:#5DCAA5}
-.cfn{color:var(--gd)}.ckw{color:var(--bl)}.cst{color:var(--tl)}.ccm{color:#44445A;font-style:italic}.cprop{color:#E2A87A}.cln{color:#2E2E46;margin-right:1rem;user-select:none}
-.code-body{padding:1.4rem 1.5rem}
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform .1s, width .3s, height .3s, background .3s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed; width: 36px; height: 36px;
+  border: 1px solid rgba(201,169,110,.4); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform .18s ease-out, width .3s, height .3s;
+}
 
-/* SECTIONS */
-section{padding:6rem 4rem;max-width:1200px;margin:0 auto}
-.sec-lbl{font-family:var(--mono);font-size:.7rem;color:var(--gd);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem}
-.sec-lbl::after{content:'';flex:1;height:1px;background:var(--bd2);max-width:80px}
-h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.9rem);font-weight:700;letter-spacing:-.025em;margin-bottom:.5rem;line-height:1.15}
-.sec-intro{color:var(--mt);font-size:.93rem;max-width:600px;margin-bottom:3.5rem;line-height:1.85}
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem}
-.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:1.5rem;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
-.sk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ca,var(--gd)),transparent);opacity:0;transition:opacity .3s}
-.sk-card:hover{border-color:var(--bd2);transform:translateY(-3px)}.sk-card:hover::before{opacity:1}
-.sk-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.9rem}
-.sk-card h3{font-size:.77rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mt);margin-bottom:.7rem}
-.tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.tag{font-family:var(--mono);font-size:.69rem;padding:.22rem .55rem;border-radius:4px;background:rgba(255,255,255,.04);color:var(--tx);border:1px solid var(--bd)}
-.tg{background:rgba(200,169,110,.1);border-color:rgba(200,169,110,.3);color:var(--gd)}
-.tb{background:rgba(123,143,232,.1);border-color:rgba(123,143,232,.28);color:var(--bl)}
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem 5rem;
+  mix-blend-mode: normal;
+}
+nav::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,12,16,.95) 0%, transparent 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: var(--paper);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-menu { display: flex; gap: 3rem; list-style: none; }
+.nav-menu a {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dust);
+  text-decoration: none;
+  transition: color .25s;
+  position: relative;
+}
+.nav-menu a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .3s;
+}
+.nav-menu a:hover { color: var(--gold); }
+.nav-menu a:hover::after { width: 100%; }
 
-/* EXPERIENCE */
-.timeline{position:relative;padding-left:2rem}
-.tl-line{position:absolute;left:0;top:12px;bottom:0;width:1px;background:var(--bd2)}
-.tl-item{position:relative}
-.tl-dot{position:absolute;left:-2rem;top:5px;width:12px;height:12px;border-radius:50%;background:var(--gd);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(200,169,110,.22)}
-.tl-meta{font-family:var(--mono);font-size:.7rem;color:var(--tl);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
-.tl-item h3{font-family:var(--serif);font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.15rem}
-.tl-co{font-size:.84rem;color:var(--mt);margin-bottom:.8rem}
-.tl-intro{font-size:.87rem;color:var(--mt);line-height:1.78;margin-bottom:1.5rem;max-width:700px}
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0 5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
 
-/* PLATFORM CARD — wraps everything */
-.platform-card{background:var(--sf);border:1px solid var(--bd2);border-radius:14px;overflow:hidden}
-.pc-header{padding:1.8rem 2rem 1.5rem;border-bottom:1px solid var(--bd)}
-.pc-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;margin-bottom:.3rem}
-.pc-sub{font-size:.82rem;color:var(--mt);line-height:1.6}
-.pc-body{padding:1.8rem 2rem}
+/* BIG BG TEXT */
+.hero-bg-text {
+  position: absolute;
+  font-family: var(--serif);
+  font-size: clamp(10rem, 20vw, 22rem);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,169,110,.06);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -52%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -.02em;
+}
 
-/* ACCOUNTING SECTION inside platform card */
-.acc-section{margin-bottom:1.8rem}
-.module-label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.28rem .8rem;border-radius:3px;background:rgba(200,169,110,.1);color:var(--gd);border:1px solid rgba(200,169,110,.28);margin-bottom:1rem}
-.owns-badge{background:rgba(200,169,110,.18);color:var(--gd);border-color:rgba(200,169,110,.4);font-weight:700}
-.acc-section h4{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-bottom:.3rem}
-.acc-section .sub{font-size:.82rem;color:var(--mt);margin-bottom:1.2rem}
-.acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:.8rem}
-.acc-mod{background:rgba(255,255,255,.025);border:1px solid var(--bd);border-radius:8px;padding:.9rem 1rem;transition:border-color .2s}
-.acc-mod:hover{border-color:rgba(200,169,110,.3)}
-.ami{font-size:1.1rem;margin-bottom:.4rem}
-.acc-mod h5{font-size:.78rem;font-weight:700;color:var(--gd);margin-bottom:.25rem}
-.acc-mod p{font-size:.73rem;color:var(--mt);line-height:1.5}
+/* HERO CONTENT */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 9rem;
+  position: relative;
+}
+.hero-kicker {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.hero-kicker-line {
+  width: 48px; height: 1px;
+  background: var(--gold);
+}
+.hero-kicker-text {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.03em;
+  margin-bottom: 1rem;
+}
+.hero-name .italic { font-style: italic; color: var(--gold); }
+.hero-name .heavy { font-weight: 700; }
+.hero-tagline {
+  font-family: var(--syne);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  color: var(--ash);
+  max-width: 680px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+.hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; }
 
-/* OTHER MODULES SECTION */
-.other-section{border-top:1px solid var(--bd);padding-top:1.5rem}
-.other-section h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
-.other-section .sub{font-size:.82rem;color:var(--mt);margin-bottom:1.2rem}
-.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-bottom:1.2rem}
-.mod-item{display:flex;align-items:flex-start;gap:.5rem;font-size:.81rem;color:var(--mt);line-height:1.5}
-.ma{color:var(--bl);font-size:.68rem;margin-top:.28rem;flex-shrink:0}
-.feats{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.3rem}
+/* PRIMARY BUTTON */
+.btn-main {
+  display: inline-flex; align-items: center; gap: .7rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--syne);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  text-decoration: none;
+  transition: all .25s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-main::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gold2);
+  transform: translateX(-101%);
+  transition: transform .3s ease;
+}
+.btn-main:hover::before { transform: translateX(0); }
+.btn-main span { position: relative; z-index: 1; }
 
-/* PROJECTS */
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.5rem}
-.proj-card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:2rem;transition:all .3s;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.proj-card:hover{border-color:var(--bd2);transform:translateY(-4px)}
-.pnum{font-family:var(--mono);font-size:3rem;font-weight:300;color:rgba(255,255,255,.04);position:absolute;top:1rem;right:1.5rem;line-height:1}
-.pbadge{font-family:var(--mono);font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .65rem;border-radius:3px;display:inline-block;margin-bottom:.9rem;width:fit-content}
-.pb1{background:rgba(123,143,232,.12);color:var(--bl);border:1px solid rgba(123,143,232,.3)}
-.pb2{background:rgba(93,202,165,.1);color:var(--tl);border:1px solid rgba(93,202,165,.3)}
-.proj-card h3{font-family:var(--serif);font-size:1.22rem;font-weight:700;margin-bottom:.6rem}
-.proj-desc{font-size:.84rem;color:var(--mt);line-height:1.7;margin-bottom:1.2rem;flex:1}
-.proj-feats{list-style:none;margin-bottom:1.2rem}
-.proj-feats li{font-size:.79rem;color:var(--mt);padding:.27rem 0 .27rem 1rem;position:relative;border-bottom:1px solid var(--bd)}
-.proj-feats li::before{content:'▪';position:absolute;left:0;color:var(--gd);font-size:.55rem;top:.44rem}
-.proj-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--bd);padding-top:.9rem;margin-top:auto}
-.proj-link{font-family:var(--mono);font-size:.72rem;color:var(--gd);text-decoration:none;display:flex;align-items:center;gap:.35rem;transition:gap .2s}
-.proj-link:hover{gap:.6rem}
+/* GHOST BUTTON */
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .98rem 2rem;
+  border: 1px solid var(--wire3);
+  text-decoration: none;
+  transition: all .25s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-/* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1.2rem}
-.stat-box{text-align:center;padding:1.7rem 1rem;background:var(--sf);border:1px solid var(--bd);border-radius:10px}
-.stat-num{font-family:var(--serif);font-size:2.4rem;font-weight:900;color:var(--gd);line-height:1;margin-bottom:.35rem}
-.stat-lbl{font-size:.72rem;color:var(--mt);line-height:1.45}
+/* HERO BOTTOM BAR */
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 4rem;
+  border-top: 1px solid var(--wire);
+}
+.hero-stats {
+  display: flex; gap: 4rem;
+}
+.hero-stat {}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .2rem;
+}
+.hero-stat-lbl {
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--dust);
+}
+.hero-scroll {
+  display: flex; align-items: center; gap: .8rem;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--dust);
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: .4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
 
-/* CONTACT */
-.contact-card{background:var(--sf);border:1px solid var(--bd2);border-radius:16px;padding:4rem 3rem;max-width:700px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
-.contact-card::after{content:'';position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:var(--gd);border-radius:50%;filter:blur(100px);opacity:.07;pointer-events:none}
-.c-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
-.c-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.77rem;color:var(--mt);text-decoration:none;padding:.65rem 1.2rem;border:1px solid var(--bd2);border-radius:6px;transition:all .2s}
-.c-link:hover{color:var(--gd);border-color:rgba(200,169,110,.4)}
-footer{text-align:center;padding:2rem 4rem;border-top:1px solid var(--bd);font-family:var(--mono);font-size:.7rem;color:var(--mt);letter-spacing:.1em}
+/* ═══════════════════════════════════════════
+   SECTION ANATOMY
+═══════════════════════════════════════════ */
+.section {
+  padding: 8rem 5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.section-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 5rem;
+}
+.section-number {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,169,110,.25);
+  line-height: .9;
+}
+.section-title-block {}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--gold);
+}
+h2.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+h2.section-title em { font-style: italic; color: var(--gold); }
+.section-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 60%);
+  margin-top: 1.5rem;
+  opacity: .3;
+}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.fu{animation:fadeUp .7s ease both}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}
+/* ═══════════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════════ */
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--wire);
+  border: 1px solid var(--wire);
+}
+.skill-block {
+  background: var(--ink);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+}
+.skill-block:hover { background: var(--ink2); }
+.skill-block::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent-c, var(--gold)), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s ease;
+}
+.skill-block:hover::before { transform: scaleX(1); }
+.skill-block-num {
+  font-family: var(--serif);
+  font-size: 4rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.04);
+  position: absolute;
+  top: 1.2rem; right: 1.8rem;
+  line-height: 1;
+}
+.skill-block-icon {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+.skill-block h3 {
+  font-family: var(--syne);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: 1.2rem;
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: .45rem; }
+.pill {
+  font-family: var(--mono);
+  font-size: .68rem;
+  padding: .3rem .7rem;
+  border: 1px solid var(--wire2);
+  color: var(--ash);
+  background: rgba(255,255,255,.02);
+  transition: all .2s;
+  letter-spacing: .04em;
+}
+.skill-block:hover .pill { border-color: var(--wire3); color: var(--paper); }
 
-@media(max-width:768px){
-  nav{padding:1rem 1.5rem}.nav-links{display:none}
-  #hero{padding:6rem 1.5rem 3rem}.hero-inner{grid-template-columns:1fr}.code-card{display:none}
-  section{padding:4rem 1.5rem}
+/* ═══════════════════════════════════════════
+   EXPERIENCE
+═══════════════════════════════════════════ */
+.exp-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+}
+.exp-sidebar {}
+.exp-sticky {
+  position: sticky;
+  top: 7rem;
+}
+.exp-period {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: .8rem;
+}
+.exp-role {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: .5rem;
+}
+.exp-company {
+  font-family: var(--syne);
+  font-size: .85rem;
+  color: var(--dust);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+.exp-location {
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .12em;
+  color: var(--dust);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: .5rem;
+}
+.exp-location::before {
+  content: '◉';
+  color: var(--gold);
+  font-size: .5rem;
+}
+.exp-stack-title {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin: 2rem 0 .8rem;
+}
+.exp-stack-pills { display: flex; flex-wrap: wrap; gap: .4rem; }
+.stack-pill {
+  font-family: var(--mono);
+  font-size: .62rem;
+  padding: .22rem .6rem;
+  background: rgba(201,169,110,.08);
+  border: 1px solid rgba(201,169,110,.2);
+  color: var(--gold);
+  letter-spacing: .04em;
+}
+
+/* PLATFORM DESCRIPTION */
+.platform-intro {
+  font-family: var(--syne);
+  font-size: .95rem;
+  color: var(--ash);
+  line-height: 1.85;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--wire);
+}
+.platform-intro strong { color: var(--paper); font-weight: 600; }
+
+/* RESPONSIBILITIES */
+.resp-list { list-style: none; margin-bottom: 2.5rem; }
+.resp-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .9rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--wire);
+  font-size: .9rem;
+  color: var(--ash);
+  line-height: 1.7;
+  transition: color .2s;
+  width: 100%;
+}
+.resp-list li:hover { color: var(--paper); }
+.resp-list li::before {
+  content: '→';
+  color: var(--gold);
+  font-size: .75rem;
+  margin-top: .28rem;
+  flex-shrink: 0;
+  min-width: 16px;
+}
+.resp-list li strong { color: var(--paper); font-weight: 600; }
+
+/* ACCOUNTING CALLOUT */
+.acc-callout {
+  background: var(--ink2);
+  border: 1px solid rgba(201,169,110,.18);
+  border-left: 3px solid var(--gold);
+  padding: 2.5rem;
+  margin: 2.5rem 0;
+  position: relative;
+}
+.acc-callout-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: .3rem .8rem;
+  border: 1px solid rgba(201,169,110,.3);
+  background: rgba(201,169,110,.08);
+  margin-bottom: 1.2rem;
+}
+.acc-callout h4 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+.acc-callout .sub {
+  font-family: var(--syne);
+  font-size: .8rem;
+  color: var(--dust);
+  margin-bottom: 1.5rem;
+}
+.acc-modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .8rem;
+}
+.acc-mod-item {
+  padding: 1rem;
+  border: 1px solid var(--wire);
+  background: rgba(255,255,255,.02);
+  transition: border-color .2s, background .2s;
+}
+.acc-mod-item:hover {
+  border-color: rgba(201,169,110,.25);
+  background: rgba(201,169,110,.04);
+}
+.acc-mod-item .icon { font-size: 1rem; margin-bottom: .5rem; display: block; }
+.acc-mod-item h5 {
+  font-family: var(--syne);
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: .3rem;
+  letter-spacing: .03em;
+}
+.acc-mod-item p {
+  font-family: var(--syne);
+  font-size: .73rem;
+  color: var(--dust);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   PROJECTS
+═══════════════════════════════════════════ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+.proj-card {
+  background: var(--ink2);
+  border: 1px solid var(--wire);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s;
+  display: flex;
+  flex-direction: column;
+  group: true;
+}
+.proj-card:hover {
+  border-color: var(--wire3);
+  transform: translateY(-5px);
+}
+.proj-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pcolor, var(--gold)), transparent);
+  transform: scaleX(0);
+  transition: transform .4s;
+}
+.proj-card:hover::after { transform: scaleX(1); }
+.proj-index {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.03);
+  position: absolute;
+  top: .5rem; right: 1.5rem;
+  line-height: 1;
+}
+.proj-type {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: .28rem .7rem;
+  border: 1px solid;
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 1.2rem;
+}
+.type-back { color: var(--ice); border-color: rgba(110,181,201,.3); background: rgba(110,181,201,.07); }
+.type-full { color: var(--mint); border-color: rgba(110,201,169,.3); background: rgba(110,201,169,.07); }
+.type-front { color: var(--gold); border-color: rgba(201,169,110,.3); background: rgba(201,169,110,.07); }
+.proj-card h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin-bottom: .7rem;
+  line-height: 1.2;
+}
+.proj-card p {
+  font-size: .84rem;
+  color: var(--ash);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.proj-features {
+  list-style: none;
+  margin-bottom: 1.8rem;
+}
+.proj-features li {
+  font-family: var(--syne);
+  font-size: .78rem;
+  color: var(--dust);
+  padding: .35rem 0;
+  border-bottom: 1px solid var(--wire);
+  padding-left: 1rem;
+  position: relative;
+}
+.proj-features li::before {
+  content: '·';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-size: 1.2rem;
+  line-height: .8;
+  top: .3rem;
+}
+.proj-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--wire);
+  margin-top: auto;
+}
+.proj-pills { display: flex; flex-wrap: wrap; gap: .35rem; }
+.proj-pill {
+  font-family: var(--mono);
+  font-size: .62rem;
+  padding: .2rem .5rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--wire2);
+  color: var(--dust);
+}
+.proj-cta {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex; align-items: center; gap: .4rem;
+  white-space: nowrap;
+  transition: gap .2s;
+}
+.proj-cta:hover { gap: .7rem; }
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-text p {
+  font-family: var(--syne);
+  font-size: .95rem;
+  color: var(--ash);
+  line-height: 1.9;
+  margin-bottom: 1.4rem;
+}
+.about-text p strong { color: var(--paper); font-weight: 600; }
+.about-text p em { color: var(--gold); font-style: italic; font-family: var(--serif); }
+.about-creds { margin-top: 2.5rem; }
+.cred-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--wire);
+}
+.cred-title {
+  font-family: var(--syne);
+  font-size: .85rem;
+  font-weight: 600;
+}
+.cred-sub {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--dust);
+  letter-spacing: .08em;
+}
+.about-facts {}
+.fact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--wire);
+  border: 1px solid var(--wire);
+  margin-bottom: 2rem;
+}
+.fact-cell {
+  background: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  transition: background .2s;
+}
+.fact-cell:hover { background: var(--ink2); }
+.fact-num {
+  font-family: var(--serif);
+  font-size: 3.2rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.fact-lbl {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dust);
+  line-height: 1.5;
+}
+.lang-block { padding: 1.5rem 0; border-top: 1px solid var(--wire); }
+.lang-title {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: 1rem;
+}
+.lang-items { display: flex; flex-direction: column; gap: .6rem; }
+.lang-item { display: flex; align-items: center; justify-content: space-between; }
+.lang-name { font-size: .85rem; font-weight: 600; }
+.lang-bar-wrap { flex: 1; height: 2px; background: var(--wire2); margin: 0 1.5rem; }
+.lang-bar { height: 100%; background: var(--gold); }
+.lang-level {
+  font-family: var(--mono);
+  font-size: .62rem;
+  color: var(--dust);
+  letter-spacing: .08em;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+#contact-section {
+  padding: 8rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+#contact-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,169,110,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: center;
+}
+.contact-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.03em;
+  margin-bottom: 2rem;
+}
+.contact-left h2 em { font-style: italic; color: var(--gold); }
+.contact-left p {
+  font-size: .92rem;
+  color: var(--ash);
+  line-height: 1.85;
+  max-width: 380px;
+}
+.contact-links { display: flex; flex-direction: column; gap: .8rem; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 2rem;
+  border: 1px solid var(--wire2);
+  background: var(--ink2);
+  text-decoration: none;
+  transition: all .25s;
+  group: true;
+}
+.contact-link:hover {
+  border-color: var(--gold);
+  background: rgba(201,169,110,.05);
+}
+.contact-link-label {
+  display: flex; align-items: center; gap: 1rem;
+}
+.contact-link-icon {
+  font-size: 1rem;
+  width: 36px; height: 36px;
+  border: 1px solid var(--wire2);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .25s;
+}
+.contact-link:hover .contact-link-icon { border-color: var(--gold); }
+.contact-link-text {}
+.contact-link-type {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: .15rem;
+}
+.contact-link-value {
+  font-family: var(--syne);
+  font-size: .85rem;
+  color: var(--paper);
+}
+.contact-link-arrow {
+  color: var(--dust);
+  font-size: .8rem;
+  transition: all .25s;
+}
+.contact-link:hover .contact-link-arrow { color: var(--gold); transform: translateX(4px); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--wire);
+  padding: 2.5rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--dust);
+}
+.footer-copy {
+  font-family: var(--mono);
+  font-size: .62rem;
+  color: var(--dust);
+  letter-spacing: .12em;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
+
+/* ═══════════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════════ */
+.section-divider {
+  height: 1px;
+  background: var(--wire);
+  margin: 0 5rem;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-menu { display: none; }
+  #hero { padding: 0 2rem 3rem; }
+  .hero-name { font-size: clamp(3rem, 12vw, 6rem); }
+  .section { padding: 5rem 2rem; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .exp-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .exp-sticky { position: static; }
+  .about-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  .section-divider { margin: 0 2rem; }
+  .hero-stats { gap: 2rem; }
+  .hero-bottom { flex-direction: column; gap: 2rem; align-items: flex-start; }
+  .acc-modules { grid-template-columns: 1fr 1fr; }
+  #contact-section { padding: 5rem 2rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
 <nav>
-  <div class="logo">Toka.</div>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <a href="#" class="nav-logo">Toka<span>.</span></a>
+  <ul class="nav-menu">
+    <li><a href="#skills-section">Skills</a></li>
+    <li><a href="#exp-section">Experience</a></li>
+    <li><a href="#projects-section">Projects</a></li>
+    <li><a href="#about-section">About</a></li>
+    <li><a href="#contact-section">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div id="hero">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="eyebrow fu">Full Stack Engineer · Laravel &amp; React</div>
-      <h1 class="fu d1">Toka<br><span class="gd">Abdellatief</span></h1>
-      <p class="hero-sub fu d2">
-        Contributing to an enterprise shipping &amp; freight forwarding platform — 
-        with full ownership of its accounting module: Chart of Accounts, 
-        Journal Entries, Banks, Treasury, ZATCA e-invoicing, P&amp;L, and Balance Sheet.
-      </p>
-      <div class="cta fu d3">
-        <a href="#experience" class="btn-p">See My Work ↓</a>
-        <a href="#contact" class="btn-o">Hire Me</a>
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-bg-text">Engineer</div>
+
+  <div class="hero-content">
+    <div class="hero-kicker">
+      <div class="hero-kicker-line"></div>
+      <span class="hero-kicker-text">Full Stack Engineer · Laravel &amp; React</span>
+    </div>
+    <h1 class="hero-name">
+      <span class="heavy">Toka</span><br>
+      <span class="italic">Abdellatief</span>
+    </h1>
+    <p class="hero-tagline">
+      Building production-grade systems for the shipping &amp; freight forwarding industry —
+      from master data and booking through operations to full financial reporting.
+      Owner of the platform's complete accounting module.
+    </p>
+    <div class="hero-actions">
+      <a href="#exp-section" class="btn-main"><span>View Experience</span> <span>↓</span></a>
+      <a href="#contact-section" class="btn-ghost">Get in Touch →</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">1+</div>
+        <div class="hero-stat-lbl">Year Production</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8+</div>
+        <div class="hero-stat-lbl">Modules Delivered</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">✓</div>
+        <div class="hero-stat-lbl">ZATCA Phase 2</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-lbl">Languages</div>
       </div>
     </div>
-    <div class="fu d4">
-      <div class="code-card">
-        <div class="code-bar">
-          <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
-          <span style="margin-left:.5rem;color:var(--mt);font-size:.7rem;letter-spacing:.05em">AccountingModule.php</span>
-        </div>
-        <div class="code-body"><pre><span class="cln">01</span><span class="ckw">class</span> <span class="cfn">AccountingModule</span> <span class="ckw">extends</span> Controller
-<span class="cln">02</span>{
-<span class="cln">03</span>  <span class="ccm">// Part of the Shipping Platform</span>
-<span class="cln">04</span>  <span class="ccm">// Full module ownership — Toka</span>
-<span class="cln">05</span>
-<span class="cln">06</span>  <span class="ckw">public function</span> <span class="cfn">profitAndLoss</span>(Request $r)
-<span class="cln">07</span>  {
-<span class="cln">08</span>    <span class="ckw">return</span> <span class="cfn">PDF</span>::render([
-<span class="cln">09</span>      <span class="cprop">'revenues'</span> => Account::revenues($r->period),
-<span class="cln">10</span>      <span class="cprop">'expenses'</span> => Account::expenses($r->period),
-<span class="cln">11</span>      <span class="cprop">'net'</span>      => <span class="cfn">$this</span>->calcNet(),
-<span class="cln">12</span>    ]);
-<span class="cln">13</span>  }
-<span class="cln">14</span>
-<span class="cln">15</span>  <span class="ckw">public function</span> <span class="cfn">zatcaInvoice</span>(Order $order)
-<span class="cln">16</span>  {
-<span class="cln">17</span>    $qr = <span class="cfn">QRCode</span>::generate($order);
-<span class="cln">18</span>    <span class="ckw">return</span> <span class="cfn">PDF</span>::zatca($order, $qr);
-<span class="cln">19</span>  }
-<span class="cln">20</span>}</pre></div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<div id="skills-section" class="section reveal">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Capabilities</div>
+      <h2 class="section-title">Technical <em>Skills</em></h2>
+      <div class="section-rule"></div>
+    </div>
+  </div>
+
+  <div class="skills-layout">
+    <div class="skill-block reveal reveal-delay-1" style="--accent-c: #6EB5C9">
+      <div class="skill-block-num">01</div>
+      <span class="skill-block-icon">⚙</span>
+      <h3>Backend Development</h3>
+      <div class="skill-pills">
+        <span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">MySQL</span>
+        <span class="pill">RESTful APIs</span><span class="pill">MVC</span><span class="pill">OOP</span>
+        <span class="pill">RBAC</span><span class="pill">Soft Delete</span><span class="pill">Audit Trail</span>
+        <span class="pill">Unit Testing</span>
+      </div>
+    </div>
+    <div class="skill-block reveal reveal-delay-2" style="--accent-c: #6EC9A9">
+      <div class="skill-block-num">02</div>
+      <span class="skill-block-icon">◈</span>
+      <h3>Frontend Development</h3>
+      <div class="skill-pills">
+        <span class="pill">React.js</span><span class="pill">Next.js</span><span class="pill">JavaScript</span>
+        <span class="pill">TypeScript</span><span class="pill">jQuery</span><span class="pill">Bootstrap</span>
+        <span class="pill">AJAX</span><span class="pill">HTML5</span><span class="pill">CSS3</span>
+      </div>
+    </div>
+    <div class="skill-block reveal reveal-delay-3" style="--accent-c: #C9A96E">
+      <div class="skill-block-num">03</div>
+      <span class="skill-block-icon">◎</span>
+      <h3>Tools &amp; Practices</h3>
+      <div class="skill-pills">
+        <span class="pill">Git</span><span class="pill">Jira</span><span class="pill">PDF Generation</span>
+        <span class="pill">Excel Import/Export</span><span class="pill">QR Code</span>
+        <span class="pill">ZATCA E-Invoicing</span><span class="pill">AJAX</span>
+      </div>
+    </div>
+    <div class="skill-block reveal reveal-delay-4" style="--accent-c: #E2695A">
+      <div class="skill-block-num">04</div>
+      <span class="skill-block-icon">✦</span>
+      <h3>Soft Skills</h3>
+      <div class="skill-pills">
+        <span class="pill">Problem Solving</span><span class="pill">Client Communication</span>
+        <span class="pill">Cross-Team Collaboration</span><span class="pill">Production Bug Resolution</span>
+        <span class="pill">Ownership Mentality</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="sec-lbl">Toolkit</div>
-  <h2>Technical Skills</h2>
-  <p class="sec-intro">Forged through production ownership inside a live enterprise platform — not just personal projects.</p>
-  <div class="skills-grid">
-    <div class="sk-card" style="--ca:#7B8FE8">
-      <div class="sk-icon" style="background:rgba(123,143,232,.12);color:var(--bl)">⚙</div>
-      <h3>Backend</h3>
-      <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">RESTful API</span><span class="tag">MVC</span><span class="tag">OOP</span><span class="tag">RBAC</span><span class="tag">Audit Trail</span></div>
-    </div>
-    <div class="sk-card" style="--ca:#5DCAA5">
-      <div class="sk-icon" style="background:rgba(93,202,165,.12);color:var(--tl)">◈</div>
-      <h3>Frontend</h3>
-      <div class="tags"><span class="tag">React.js</span><span class="tag">Next.js</span><span class="tag">JavaScript</span><span class="tag">jQuery</span><span class="tag">Bootstrap</span><span class="tag">AJAX</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div>
-    </div>
-    <div class="sk-card" style="--ca:#C8A96E">
-      <div class="sk-icon" style="background:rgba(200,169,110,.12);color:var(--gd)">◎</div>
-      <h3>Accounting &amp; Finance</h3>
-      <div class="tags">
-        <span class="tag tg">Chart of Accounts</span><span class="tag tg">Journal Entries</span><span class="tag tg">AP / AR</span><span class="tag tg">Banks &amp; Treasury</span><span class="tag tg">Transactions</span><span class="tag tg">ZATCA Phase 2</span><span class="tag tg">P&amp;L Statement</span><span class="tag tg">Balance Sheet</span><span class="tag tg">Account Statement</span><span class="tag tg">Trial Balance</span>
-      </div>
-    </div>
-    <div class="sk-card" style="--ca:#E2695A">
-      <div class="sk-icon" style="background:rgba(226,105,90,.12);color:var(--rd)">✦</div>
-      <h3>Tools &amp; Practices</h3>
-      <div class="tags"><span class="tag">Git</span><span class="tag">Jira</span><span class="tag">Unit Testing</span><span class="tag">PDF Generation</span><span class="tag">Excel Import/Export</span><span class="tag">QR Code</span><span class="tag">Soft Delete</span></div>
+<div class="section-divider"></div>
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<div id="exp-section" class="section reveal">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Career</div>
+      <h2 class="section-title">Work <em>Experience</em></h2>
+      <div class="section-rule"></div>
     </div>
   </div>
-</section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="sec-lbl">Career</div>
-  <h2>Experience</h2>
-  <p class="sec-intro">One platform, multiple modules — with full ownership where it counts most.</p>
+  <div class="exp-layout">
+    <div class="exp-sidebar">
+      <div class="exp-sticky">
+        <div class="exp-period">Feb 2025 — Present</div>
+        <div class="exp-role">PHP Full Stack Developer</div>
+        <div class="exp-company">Deja Tech</div>
+        <div class="exp-location">Alexandria, Egypt</div>
+        <div class="exp-stack-title">Stack</div>
+        <div class="exp-stack-pills">
+          <span class="stack-pill">Laravel</span><span class="stack-pill">PHP</span>
+          <span class="stack-pill">MySQL</span><span class="stack-pill">JavaScript</span>
+          <span class="stack-pill">jQuery</span><span class="stack-pill">Bootstrap</span>
+          <span class="stack-pill">AJAX</span><span class="stack-pill">ZATCA</span>
+          <span class="stack-pill">PDF</span><span class="stack-pill">Excel</span>
+        </div>
+      </div>
+    </div>
 
-  <div class="timeline">
-    <div class="tl-line"></div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-meta">Feb 2025 – Present</div>
-      <h3>PHP Full Stack Developer</h3>
-      <div class="tl-co">Deja Tech &nbsp;·&nbsp; Alexandria, Egypt</div>
-      <p class="tl-intro">
-        Contributing to an enterprise <strong>Shipping &amp; Freight Forwarding Management Platform</strong> 
-        used by real shipping agencies and logistics companies. The platform covers the full shipping 
-        business lifecycle across multiple interconnected modules.
+    <div class="exp-main">
+      <p class="platform-intro">
+        Contributor to an enterprise <strong>Shipping &amp; Freight Forwarding Management Platform</strong>
+        serving real shipping agencies and logistics companies. The platform supports the full business
+        lifecycle — from <strong>master data and user setup</strong> through customer management, booking,
+        operations, and shipping stages, all the way through to financial reporting.
       </p>
 
-      <!-- PLATFORM CARD -->
-      <div class="platform-card">
+      <ul class="resp-list reveal">
+        <li><strong>Master data &amp; user management</strong> — Built and maintained user, customer, and all master data creation modules that form the foundation of the platform.</li>
+        <li><strong>Booking module</strong> — Developed booking workflows integrated with customer and operations data.</li>
+        <li><strong>Customer management &amp; CRM</strong> — Built customer lifecycle management with relationship tracking and communication history.</li>
+        <li><strong>Quotation management</strong> — Developed quotation creation, approval workflows, and PDF generation.</li>
+        <li><strong>Operations &amp; job tracking</strong> — Built job management modules covering the full operational shipping lifecycle.</li>
+        <li><strong>Document workflows</strong> — Implemented document generation, upload, and management across modules.</li>
+        <li><strong>CRUD &amp; RBAC</strong> — Built all modules with role-based access control, ensuring secure and permission-driven data access throughout.</li>
+        <li><strong>PDF &amp; Excel</strong> — Implemented PDF generation and Excel import/export with filters across all major modules.</li>
+        <li><strong>Soft delete &amp; audit trail</strong> — Applied soft delete with full restoration and deletion tracking across the platform.</li>
+        <li><strong>AJAX interactions</strong> — Eliminated page reloads across the UI with AJAX-driven components for a smoother UX.</li>
+        <li><strong>Production stability</strong> — Resolved critical production bugs under live operational pressure, communicating directly with clients to troubleshoot and improve workflows.</li>
+      </ul>
 
-        <div class="pc-header">
-          <div class="pc-title">Shipping &amp; Freight Forwarding Platform</div>
-          <div class="pc-sub">Enterprise multi-module system · Laravel · PHP · MySQL · Live production environment</div>
-        </div>
-
-        <div class="pc-body">
-
-          <!-- ACCOUNTING MODULE -->
-          <div class="acc-section">
-            <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem">
-              <span class="module-label owns-badge">★ Accounting Module — Full Ownership</span>
-            </div>
-            <h4 style="font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.25rem">Complete Financial Cycle</h4>
-            <p class="sub" style="font-size:.82rem;color:var(--mt);margin-bottom:1.2rem">Designed, built &amp; maintained end-to-end · Integrated with live shipping operations</p>
-            <div class="acc-grid">
-              <div class="acc-mod"><div class="ami">🌳</div><h5>Chart of Accounts</h5><p>Multi-level accounting tree: assets, liabilities, equity, income &amp; expenses</p></div>
-              <div class="acc-mod"><div class="ami">📒</div><h5>Journal Entries</h5><p>Double-entry engine with debit/credit validation, posting &amp; audit trail</p></div>
-              <div class="acc-mod"><div class="ami">📥</div><h5>Accounts Payable</h5><p>Vendor invoices, payment scheduling &amp; AP aging reports</p></div>
-              <div class="acc-mod"><div class="ami">📤</div><h5>Accounts Receivable</h5><p>Client billing, collection tracking &amp; AR aging reports</p></div>
-              <div class="acc-mod"><div class="ami">🏦</div><h5>Banks &amp; Treasury</h5><p>Multi-bank accounts, transfers, cash flow &amp; treasury position</p></div>
-              <div class="acc-mod"><div class="ami">💳</div><h5>Transactions</h5><p>Full financial transaction lifecycle linked to shipping operations</p></div>
-              <div class="acc-mod"><div class="ami">🧾</div><h5>ZATCA E-Invoicing</h5><p>Saudi Phase 2 compliant — automated QR code &amp; PDF generation</p></div>
-              <div class="acc-mod"><div class="ami">📊</div><h5>Financial Reports</h5><p>P&amp;L, Balance Sheet, Trial Balance, Account Statement — PDF &amp; Excel</p></div>
-            </div>
-          </div>
-
-          <!-- OTHER MODULES -->
-          <div class="other-section">
-            <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem">
-              <span class="module-label">Other Platform Modules — Contributor</span>
-            </div>
-            <p class="sub" style="font-size:.82rem;color:var(--mt);margin-bottom:1.2rem">Cross-module contributions across the full shipping business cycle</p>
-            <div class="modules-grid">
-              <div class="mod-item"><span class="ma">→</span>Customer management &amp; CRM</div>
-              <div class="mod-item"><span class="ma">→</span>Quotation management</div>
-              <div class="mod-item"><span class="ma">→</span>Operations &amp; job tracking</div>
-              <div class="mod-item"><span class="ma">→</span>User &amp; role management</div>
-              <div class="mod-item"><span class="ma">→</span>Document workflows</div>
-              <div class="mod-item"><span class="ma">→</span>Production bug resolution</div>
-            </div>
-            <div class="feats">
-              <span class="tag tb">PDF Generation</span>
-              <span class="tag tb">Excel Export &amp; Import</span>
-              <span class="tag tb">Full CRUD + RBAC</span>
-              <span class="tag tb">Soft Delete &amp; Restore</span>
-              <span class="tag tb">AJAX Interactions</span>
-              <span class="tag tb">Responsive UI</span>
-              <span class="tag tb">Client Communication</span>
-            </div>
-          </div>
-
+      <!-- ACCOUNTING CALLOUT -->
+      <div class="acc-callout reveal">
+        <span class="acc-callout-badge">★ Full Module Ownership</span>
+        <h4>Accounting Module</h4>
+        <p class="sub">Designed, built &amp; maintained end-to-end · Integrated with live shipping operations</p>
+        <div class="acc-modules">
+          <div class="acc-mod-item"><span class="icon">🌳</span><h5>Chart of Accounts</h5><p>Multi-level accounting tree: assets, liabilities, equity, income &amp; expenses</p></div>
+          <div class="acc-mod-item"><span class="icon">📒</span><h5>Journal Entries</h5><p>Double-entry engine with debit/credit validation &amp; audit trail</p></div>
+          <div class="acc-mod-item"><span class="icon">📥</span><h5>Accounts Payable</h5><p>Vendor invoices, payment scheduling &amp; AP aging</p></div>
+          <div class="acc-mod-item"><span class="icon">📤</span><h5>Accounts Receivable</h5><p>Client billing, collection tracking &amp; AR aging</p></div>
+          <div class="acc-mod-item"><span class="icon">🏦</span><h5>Banks &amp; Treasury</h5><p>Multi-bank accounts, transfers &amp; treasury position</p></div>
+          <div class="acc-mod-item"><span class="icon">💳</span><h5>Transactions</h5><p>Full financial transaction lifecycle linked to operations</p></div>
+          <div class="acc-mod-item"><span class="icon">🧾</span><h5>ZATCA E-Invoicing</h5><p>Saudi Phase 2 compliant — QR code &amp; PDF auto-generation</p></div>
+          <div class="acc-mod-item"><span class="icon">📊</span><h5>Financial Reports</h5><p>P&amp;L, Balance Sheet, Trial Balance, Statements — PDF &amp; Excel</p></div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="sec-lbl">Personal Work</div>
-  <h2>Projects</h2>
-  <p class="sec-intro">Side projects demonstrating full-stack range and architecture thinking.</p>
-  <div class="proj-grid">
-    <div class="proj-card">
-      <div class="pnum">01</div>
-      <span class="pbadge pb1">Backend · Laravel</span>
-      <h3>ShopApp – E-Commerce API</h3>
-      <p class="proj-desc">Complete e-commerce backend in Laravel covering the full business logic from product catalog to payment processing, with unit testing throughout.</p>
-      <ul class="proj-feats">
+<div class="section-divider"></div>
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<div id="projects-section" class="section reveal">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Personal Work</div>
+      <h2 class="section-title">Selected <em>Projects</em></h2>
+      <div class="section-rule"></div>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+    <!-- ShopApp -->
+    <div class="proj-card reveal reveal-delay-1" style="--pcolor: #6EB5C9">
+      <div class="proj-index">01</div>
+      <span class="proj-type type-back">Backend · Laravel</span>
+      <h3>ShopApp</h3>
+      <p>Complete e-commerce backend covering the full business logic from product catalog to payment processing via RESTful APIs, with unit testing throughout for data integrity.</p>
+      <ul class="proj-features">
         <li>Products, carts, wishlist, orders, coupons &amp; payments</li>
-        <li>Clean RESTful API architecture</li>
-        <li>Unit-tested for data integrity &amp; reliability</li>
+        <li>RESTful API architecture — clean &amp; documented</li>
+        <li>Unit-tested for reliability &amp; data integrity</li>
         <li>Role-based user management</li>
       </ul>
-      <div class="proj-foot">
-        <div class="tags"><span class="tag">Laravel</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Unit Testing</span></div>
-        <a href="https://github.com/EngineerToka/ShopApp" target="_blank" class="proj-link">GitHub →</a>
+      <div class="proj-footer">
+        <div class="proj-pills">
+          <span class="proj-pill">Laravel</span><span class="proj-pill">PHP</span>
+          <span class="proj-pill">MySQL</span><span class="proj-pill">Unit Testing</span>
+        </div>
+        <a href="https://github.com/EngineerToka/ShopApp" target="_blank" class="proj-cta">GitHub →</a>
       </div>
     </div>
-    <div class="proj-card">
-      <div class="pnum">02</div>
-      <span class="pbadge pb2">Full Stack · React</span>
-      <h3>Fresh Cart – Shopping SPA</h3>
-      <p class="proj-desc">Full-featured e-commerce React SPA with product browsing, cart management, wishlist, secure checkout, and user authentication — fully responsive.</p>
-      <ul class="proj-feats">
-        <li>Product browsing, cart &amp; wishlist</li>
+
+    <!-- Fresh Cart -->
+    <div class="proj-card reveal reveal-delay-2" style="--pcolor: #6EC9A9">
+      <div class="proj-index">02</div>
+      <span class="proj-type type-full">Full Stack · React</span>
+      <h3>Fresh Cart</h3>
+      <p>Full-featured e-commerce SPA built with React.js — product browsing, cart management, wishlist, secure checkout, and user authentication. Fully responsive across all devices.</p>
+      <ul class="proj-features">
+        <li>Product browsing, cart &amp; wishlist management</li>
         <li>Secure checkout &amp; order management</li>
-        <li>Register, login &amp; profile update</li>
+        <li>User register, login &amp; profile update</li>
         <li>Responsive — mobile to desktop</li>
       </ul>
-      <div class="proj-foot">
-        <div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span></div>
-        <a href="https://github.com/EngineerToka/E-Commerce-shopping-App" target="_blank" class="proj-link">GitHub →</a>
+      <div class="proj-footer">
+        <div class="proj-pills">
+          <span class="proj-pill">React.js</span><span class="proj-pill">JavaScript</span>
+          <span class="proj-pill">Bootstrap</span>
+        </div>
+        <a href="https://github.com/EngineerToka/E-Commerce-shopping-App" target="_blank" class="proj-cta">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- Yummy -->
+    <div class="proj-card reveal reveal-delay-3" style="--pcolor: #C9A96E">
+      <div class="proj-index">03</div>
+      <span class="proj-type type-front">Frontend · JavaScript</span>
+      <h3>Yummy</h3>
+      <p>Web application for discovering meals and ingredients using the MealDB API — interactive browsing with detailed meal information and category filtering.</p>
+      <ul class="proj-features">
+        <li>MealDB API integration &amp; dynamic rendering</li>
+        <li>Category &amp; ingredient-based browsing</li>
+        <li>Interactive meal detail pages</li>
+        <li>jQuery-driven UI interactions</li>
+      </ul>
+      <div class="proj-footer">
+        <div class="proj-pills">
+          <span class="proj-pill">JavaScript</span><span class="proj-pill">jQuery</span>
+          <span class="proj-pill">Bootstrap</span><span class="proj-pill">HTML/CSS</span>
+        </div>
+        <a href="https://github.com/EngineerToka" target="_blank" class="proj-cta">GitHub →</a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ABOUT -->
-<section>
-  <div class="sec-lbl">Background</div>
-  <h2>About Me</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
-    <div>
-      <p style="color:var(--mt);line-height:1.9;font-size:.92rem;margin-bottom:1rem">I studied Production &amp; Industrial Engineering at Alexandria University — which trained me to think in systems, processes, and optimization. That mindset shapes how I approach software architecture.</p>
-      <p style="color:var(--mt);line-height:1.9;font-size:.92rem;margin-bottom:1rem">After Route Academy's full-stack diploma, I joined Deja Tech where I've taken real ownership inside a live production platform — not just writing code, but designing and delivering entire modules that real businesses depend on daily.</p>
-      <p style="color:var(--mt);line-height:1.9;font-size:.92rem">Based in Alexandria, Egypt. Open to remote work globally and on-site in the Gulf — especially Saudi Arabia where my ZATCA expertise applies directly.</p>
+<div class="section-divider"></div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<div id="about-section" class="section reveal">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Background</div>
+      <h2 class="section-title">About <em>Me</em></h2>
+      <div class="section-rule"></div>
     </div>
-    <div>
-      <div class="stats-row">
-        <div class="stat-box"><div class="stat-num">8+</div><div class="stat-lbl">Accounting Sub-Modules Built</div></div>
-        <div class="stat-box"><div class="stat-num">✓</div><div class="stat-lbl">ZATCA Phase 2 Compliant</div></div>
-        <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Live Enterprise Platform</div></div>
-        <div class="stat-box"><div class="stat-num">B2</div><div class="stat-lbl">English Proficiency</div></div>
+  </div>
+
+  <div class="about-layout">
+    <div class="about-text">
+      <p>I studied <strong>Production &amp; Industrial Engineering</strong> at Alexandria University — which trained me to think in systems, processes, and optimization. That engineering mindset shapes how I design and build software: I don't just write features, I design <em>systems that work</em>.</p>
+      <p>After completing Route Academy's intensive full-stack diploma, I joined Deja Tech where I contribute to a <strong>live enterprise shipping platform</strong> used by real businesses. From day one I took ownership rather than just executing tasks — and that's the only way I know how to work.</p>
+      <p>I'm <strong>open to opportunities worldwide</strong> — remote or on-site. Whether it's logistics, fintech, ERP, or any product that needs serious full-stack engineering, I'm ready to contribute from the first week.</p>
+
+      <div class="about-creds">
+        <div class="cred-item">
+          <div class="cred-title">Full Stack Web Development Diploma</div>
+          <div class="cred-sub">Route Academy · 2023–2024</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-title">Bachelor of Production &amp; Industrial Engineering</div>
+          <div class="cred-sub">Alexandria University · 2021 · Very Good with Honors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-facts">
+      <div class="fact-grid">
+        <div class="fact-cell">
+          <div class="fact-num">8+</div>
+          <div class="fact-lbl">Platform Modules Delivered</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-num">✓</div>
+          <div class="fact-lbl">ZATCA Phase 2 Compliant</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-num">Full</div>
+          <div class="fact-lbl">Accounting Module Ownership</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-num">Live</div>
+          <div class="fact-lbl">Production System Experience</div>
+        </div>
+      </div>
+
+      <div class="lang-block">
+        <div class="lang-title">Languages</div>
+        <div class="lang-items">
+          <div class="lang-item">
+            <span class="lang-name">Arabic</span>
+            <div class="lang-bar-wrap"><div class="lang-bar" style="width:100%"></div></div>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <div class="lang-bar-wrap"><div class="lang-bar" style="width:72%"></div></div>
+            <span class="lang-level">B2 Upper</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="sec-lbl" style="justify-content:center">Let's Talk</div>
-  <div class="contact-card">
-    <h2 style="margin-bottom:.7rem">Open to Opportunities</h2>
-    <p style="color:var(--mt);font-size:.92rem;line-height:1.85;max-width:480px;margin:0 auto">
-      Looking for full-stack or backend roles — remote worldwide, or on-site in the Gulf.
-      Strongest fit for logistics, fintech, ERP, or any product needing serious backend &amp; accounting engineering.
-    </p>
-    <div class="c-links">
-      <a href="mailto:toka.mahmoud91@gmail.com" class="c-link">✉ toka.mahmoud91@gmail.com</a>
-      <a href="https://linkedin.com/in/toka-mahmoud-8661591b5/" target="_blank" class="c-link">↗ LinkedIn</a>
-      <a href="https://github.com/EngineerToka" target="_blank" class="c-link">↗ GitHub</a>
-      <a href="tel:+201204252882" class="c-link">☎ +20 120 425 2882</a>
+<div class="section-divider"></div>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<div id="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <h2>Let's<br>Work <em>Together</em></h2>
+      <p>Open to full-stack and backend roles — remote or on-site, anywhere in the world. If you're building something serious, I'd love to hear about it.</p>
+    </div>
+    <div class="contact-links reveal reveal-delay-2">
+      <a href="mailto:toka.mahmoud91@gmail.com" class="contact-link">
+        <div class="contact-link-label">
+          <div class="contact-link-icon">✉</div>
+          <div class="contact-link-text">
+            <div class="contact-link-type">Email</div>
+            <div class="contact-link-value">toka.mahmoud91@gmail.com</div>
+          </div>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/toka-mahmoud-8661591b5/" target="_blank" class="contact-link">
+        <div class="contact-link-label">
+          <div class="contact-link-icon">↗</div>
+          <div class="contact-link-text">
+            <div class="contact-link-type">LinkedIn</div>
+            <div class="contact-link-value">toka-mahmoud-8661591b5</div>
+          </div>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://github.com/EngineerToka" target="_blank" class="contact-link">
+        <div class="contact-link-label">
+          <div class="contact-link-icon">◈</div>
+          <div class="contact-link-text">
+            <div class="contact-link-type">GitHub</div>
+            <div class="contact-link-value">github.com/EngineerToka</div>
+          </div>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="tel:+201204252882" class="contact-link">
+        <div class="contact-link-label">
+          <div class="contact-link-icon">☎</div>
+          <div class="contact-link-text">
+            <div class="contact-link-type">Phone</div>
+            <div class="contact-link-value">+20 120 425 2882</div>
+          </div>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
     </div>
   </div>
-</section>
+</div>
 
-<footer>Toka Mohamoud Abdellatief &nbsp;·&nbsp; Full Stack Engineer &nbsp;·&nbsp; Alexandria, Egypt &nbsp;·&nbsp; 2025</footer>
+<footer>
+  <div class="footer-logo">Toka Abdellatief</div>
+  <div class="footer-copy">Full Stack Engineer · Alexandria, Egypt · 2025</div>
+</footer>
 
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+function animRing() {
+  rx += (mx - rx) * .12;
+  ry += (my - ry) * .12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a, button, .proj-card, .contact-link, .skill-block').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '16px';
+    cursor.style.height = '16px';
+    ring.style.width = '56px';
+    ring.style.height = '56px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '8px';
+    cursor.style.height = '8px';
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+  });
+});
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+revealEls.forEach(el => io.observe(el));
+
+// NAV ACTIVE
+window.addEventListener('scroll', () => {
+  const links = document.querySelectorAll('.nav-menu a');
+  const sections = ['skills-section','exp-section','projects-section','about-section','contact-section'];
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 200) current = id;
+  });
+  links.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+  });
+});
+</script>
 </body>
 </html>
